@@ -1,56 +1,104 @@
-# Welcome to your Expo app 👋
+# NutriTracka
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A mobile nutrition tracker built with React Native and Expo. Log your meals, see your daily calories, protein, carbs and fat at a glance, and get gentle reminders to log lunch and dinner.
 
-## Get started
+<img src="./screenshots/home.jpeg" width="250" /> <img src="./screenshots/add-meal.jpeg" width="250" /> <img src="./screenshots/meals.jpeg" width="250" />
+<img src="./screenshots/copy.jpeg" width="250" /> <img src="./screenshots/share.jpeg" width="250" /> <img src="./screenshots/delete.jpeg" width="250" />
 
-1. Install dependencies
+## Features
+
+- **Daily dashboard** showing calories, protein, carbs and fat against daily targets
+- **Add meals** with a validated form for name, calories and macronutrients
+- **Meal history** with long-press to delete, including a confirmation prompt and haptic feedback
+- **Share and copy** a daily nutrition summary in one tap
+- **Meal reminders** delivered as daily local notifications at lunch and dinner time
+- **On-device storage**, so your meals persist between sessions without an account
+- **Tab navigation** between Home, Add Meal and All Meals using Expo Router
+
+## Tech Stack
+
+- [React Native](https://reactnative.dev/) with [Expo](https://expo.dev/) (SDK 57)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Expo Router](https://docs.expo.dev/router/introduction/) for file-based navigation
+- [expo-notifications](https://docs.expo.dev/versions/latest/sdk/notifications/) for local reminders
+- [expo-haptics](https://docs.expo.dev/versions/latest/sdk/haptics/) and [expo-clipboard](https://docs.expo.dev/versions/latest/sdk/clipboard/)
+- [@expo/vector-icons](https://docs.expo.dev/guides/icons/) (Ionicons)
+- [EAS Build](https://docs.expo.dev/build/introduction/) for development and installable Android builds
+
+## Download
+
+Android APK: [Download the latest build](https://expo.dev/accounts/chiomasarah/projects/nutritracka/builds/8e9bb0f7-f118-4375-807a-f21d30173a7d)
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (LTS)
+- An Android emulator via [Android Studio](https://developer.android.com/studio), or a physical Android device
+- An [Expo account](https://expo.dev/signup) and the EAS CLI: `npm install -g eas-cli`
+
+### Installation
+
+```bash
+git clone https://github.com/ChiomaSarah/nutritracka.git
+cd nutritracka
+npm install
+```
+
+### Running the app
+
+NutriTracka uses `expo-notifications`, which is not fully supported in Expo Go, so it runs in a **development build** instead.
+
+1. Create and install a development build (only needed once, or after adding native packages):
 
    ```bash
-   npm install
+   eas build:dev
    ```
 
-2. Start the app
+2. Start the development server:
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. Press `a` to open the app on a running Android emulator, or open the NutriTracka development build on your device and connect to the server.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Building an APK
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+To produce a standalone APK you can install or share:
 
 ```bash
-npm run reset-project
+eas build --platform android --profile preview
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+When the build finishes, EAS provides a download link and QR code.
 
-### Other setup steps
+## Project Structure
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```
+src/
+├── app/                    # Screens (Expo Router)
+│   ├── _layout.tsx         # Root stack layout
+│   └── (tabs)/
+│       ├── _layout.tsx     # Tab navigator
+│       ├── index.tsx       # Home dashboard
+│       ├── add-meal.tsx    # Add meal form
+│       └── meals.tsx       # All meals
+├── components/             # Reusable UI components
+├── storage/                # Meal persistence
+├── styles/                 # Shared colors and styles
+└── utils/                  # Notification helpers
+```
 
-## Learn more
+## Scripts
 
-To learn more about developing your project with Expo, look at the following resources:
+| Command             | Description                          |
+| ------------------- | ------------------------------------ |
+| `npm run start`     | Start the development server         |
+| `npm run android`   | Start the server and open on Android |
+| `npm run build:dev` | Create or reuse a development build  |
+| `npm run lint`      | Run the linter                       |
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Author
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Sarah Chioma Osuji**

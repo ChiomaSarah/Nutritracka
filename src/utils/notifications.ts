@@ -32,7 +32,7 @@ export const scheduleMealReminders = async () => {
 
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "MacroZone",
+      title: "NutriTracka",
       body: "Time to log your dinner!",
     },
     trigger: {
